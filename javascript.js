@@ -29,3 +29,9 @@ function operate(a, operator, b) {
         return divide(a, b)
     }
 }
+
+const displayFirstRow = document.querySelector('#display-first-row');
+const displaySecondRow = document.querySelector('#display-second-row');
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => button.addEventListener('click', (e) => displaySecondRow.textContent = e.target.textContent))
+ 
