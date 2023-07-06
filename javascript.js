@@ -37,7 +37,7 @@ buttons.forEach((button) => button.addEventListener('click', (e) => displaySecon
  
 const actions = document.querySelectorAll('.last-button');
 actions.forEach((action) => action.addEventListener('click', (e) => {
-    
+    // if both first row and second row are not null calculate and the result operator another number 
     displayFirstRow.textContent = displayFirstRow.textContent + displaySecondRow.textContent;
     displaySecondRow.textContent = '';
     }))
