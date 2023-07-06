@@ -25,6 +25,7 @@ body {
     flex-grow: 1;
     align-self: flex-end;
     font-size: 30px;
+    /* flex-wrap: wrap; */
 }
 
 #display-second-row {
