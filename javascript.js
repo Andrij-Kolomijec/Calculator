@@ -79,3 +79,8 @@ clear.addEventListener('click', () => {
     displaySecondRow.textContent = '';
     displayFirstRow.textContent = '';
 });
+
+const deleteButton = document.querySelector('#delete');
+deleteButton.addEventListener('click', () => {
+    displaySecondRow.textContent = displaySecondRow.textContent.slice(0, -1);
+})
