@@ -57,6 +57,7 @@ button {
     
 }
 
+.button.clear-delete,
 .button.last-button { /* chaining selector */
     display: flex;
     flex-direction: column;

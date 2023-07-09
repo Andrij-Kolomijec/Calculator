@@ -33,47 +33,49 @@ function operate(a, operator, b) {
 const displayFirstRow = document.querySelector('#display-first-row');
 const displaySecondRow = document.querySelector('#display-second-row');
 const buttons = document.querySelectorAll('.numeric');
+let activeOperator = false;
+
 buttons.forEach((button) => button.addEventListener('click', (e) => {
-    if (finished === true) {
-        displaySecondRow.textContent = '';
-        displayFirstRow.textContent = '';
-        finished = false;
-    }
     displaySecondRow.textContent = displaySecondRow.textContent + e.target.textContent;
     secondRow = displaySecondRow.textContent;
+    activeOperator = false;
     }
 ))
  
 const actions = document.querySelectorAll('.last-button');
 actions.forEach((action) => action.addEventListener('click', (e) => {
-    if (firstRow !== null) {
-            displayFirstRow.textContent = operate(firstRow, operator, secondRow);
-            operator = e.target.textContent;
-        } else {
-            firstRow = secondRow;
-            operator = e.target.textContent;
-        }
+    if (activeOperator === true) {
+        operator = e.target.textContent;
+        secondRow = firstRow;
+    }
+    if (firstRow !== null && activeOperator === false) {
+        firstRow = operate(firstRow, operator, secondRow);
+        displayFirstRow.textContent = firstRow;
+        operator = e.target.textContent;
+        activeOperator = true;
+    } else {
+        firstRow = secondRow;
+        operator = e.target.textContent;
+        activeOperator = true;
+    }
     displayFirstRow.textContent = firstRow + operator;
     displaySecondRow.textContent = '';
     }))
-
-let finished = false;
 
 const equals = document.querySelector('#equal-button');
 equals.addEventListener('click', () => {
     displayFirstRow.textContent = firstRow + operator + secondRow;
     displaySecondRow.textContent = operate(firstRow, operator, secondRow);
-    finished = true;
+    activeOperator = false;
     }
 );
 
-
-
-
-
-
-
-// zobrazit cele cislo
-// po stisknuti jineho tlacitka (krome desetinne carky) 
-//      nez cislo zobrazit toto cislo a znamenko v radku nad
-// 
+const clear = document.querySelector('#clear');
+clear.addEventListener('click', () => {
+    firstRow = null;
+    operator = null;
+    secondRow = null;
+    activeOperator = false;
+    displaySecondRow.textContent = '';
+    displayFirstRow.textContent = '';
+});
