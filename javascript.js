@@ -34,13 +34,25 @@ const displayFirstRow = document.querySelector('#display-first-row');
 const displaySecondRow = document.querySelector('#display-second-row');
 const buttons = document.querySelectorAll('.numeric');
 let activeOperator = false;
+let finished = false;
 
 buttons.forEach((button) => button.addEventListener('click', (e) => {
-    displaySecondRow.textContent = displaySecondRow.textContent + e.target.textContent;
-    secondRow = displaySecondRow.textContent;
-    activeOperator = false;
+    if (e.target.textContent === '.') {
+        if (displaySecondRow.textContent.includes('.')) {
+            displaySecondRow.textContent = displaySecondRow.textContent;
+        } else {
+            displaySecondRow.textContent = displaySecondRow.textContent + e.target.textContent;
+            secondRow = displaySecondRow.textContent;
+            activeOperator = false;
+            finished = false; 
+        }
+    } else {
+        displaySecondRow.textContent = displaySecondRow.textContent + e.target.textContent;
+        secondRow = displaySecondRow.textContent;
+        activeOperator = false;
+        finished = false;  
     }
-))
+}))
  
 const actions = document.querySelectorAll('.last-button');
 actions.forEach((action) => action.addEventListener('click', (e) => {
@@ -60,15 +72,23 @@ actions.forEach((action) => action.addEventListener('click', (e) => {
     }
     displayFirstRow.textContent = firstRow + operator;
     displaySecondRow.textContent = '';
-    }))
+    if (operator === "÷" && secondRow === "0") {
+        displaySecondRow.textContent = "Division by zero, MORON!";
+    }
+}))
 
 const equals = document.querySelector('#equal-button');
 equals.addEventListener('click', () => {
-    displayFirstRow.textContent = firstRow + operator + secondRow;
-    displaySecondRow.textContent = operate(firstRow, operator, secondRow);
-    activeOperator = false;
+    if (firstRow !== null) {
+        displayFirstRow.textContent = firstRow + operator + secondRow;
+        displaySecondRow.textContent = operate(firstRow, operator, secondRow);
+        activeOperator = false;
     }
-);
+    if (operator === "÷" && secondRow === "0") {
+        displaySecondRow.textContent = "Division by zero, MORON!";
+    }
+    finished = true;
+})
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
@@ -76,11 +96,12 @@ clear.addEventListener('click', () => {
     operator = null;
     secondRow = null;
     activeOperator = false;
+    finished = false;
     displaySecondRow.textContent = '';
     displayFirstRow.textContent = '';
-});
+})
 
 const deleteButton = document.querySelector('#delete');
 deleteButton.addEventListener('click', () => {
-    displaySecondRow.textContent = displaySecondRow.textContent.slice(0, -1);
+    if (finished === false) displaySecondRow.textContent = displaySecondRow.textContent.slice(0, -1);
 })
