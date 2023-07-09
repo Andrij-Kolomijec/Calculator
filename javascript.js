@@ -37,6 +37,7 @@ let activeOperator = false;
 let finished = false;
 
 buttons.forEach((button) => button.addEventListener('click', (e) => {
+    if (finished === true) clear();
     if (e.target.textContent === '.') {
         if (displaySecondRow.textContent.includes('.')) {
             displaySecondRow.textContent = displaySecondRow.textContent;
@@ -72,6 +73,7 @@ actions.forEach((action) => action.addEventListener('click', (e) => {
     }
     displayFirstRow.textContent = firstRow + operator;
     displaySecondRow.textContent = '';
+    finished = false;
     if (operator === "÷" && secondRow === "0") {
         displaySecondRow.textContent = "Division by zero, MORON!";
     }
@@ -90,8 +92,9 @@ equals.addEventListener('click', () => {
     finished = true;
 })
 
-const clear = document.querySelector('#clear');
-clear.addEventListener('click', () => {
+const clearButton = document.querySelector('#clear');
+
+function clear() {
     firstRow = null;
     operator = null;
     secondRow = null;
@@ -99,9 +102,12 @@ clear.addEventListener('click', () => {
     finished = false;
     displaySecondRow.textContent = '';
     displayFirstRow.textContent = '';
-})
+}
+
+clearButton.addEventListener('click', clear);
 
 const deleteButton = document.querySelector('#delete');
 deleteButton.addEventListener('click', () => {
     if (finished === false) displaySecondRow.textContent = displaySecondRow.textContent.slice(0, -1);
+    secondRow = displaySecondRow.textContent;
 })
