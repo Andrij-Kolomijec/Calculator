@@ -111,3 +111,5 @@ deleteButton.addEventListener('click', () => {
     if (finished === false) displaySecondRow.textContent = displaySecondRow.textContent.slice(0, -1);
     secondRow = displaySecondRow.textContent;
 })
+
+// TO DO: css, clean the code
