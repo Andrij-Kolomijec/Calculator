@@ -171,7 +171,3 @@ function handleKeyboardInput(e) {
         }
     } else if (key === '=' || key === 'Enter') finishOperation()
 }
-
-
-//cancel focus after clicking
-//preventDefault of /
