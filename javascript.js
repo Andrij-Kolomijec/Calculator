@@ -169,5 +169,8 @@ function handleKeyboardInput(e) {
         if (operator === "÷" && secondRow === "0") {
             displaySecondRow.textContent = "Division by zero, MORON!";
         }
-    } else if (key === '=' || key === 'Enter') finishOperation()
+    } else if (key === '=' || key === 'Enter') {
+        e.preventDefault();
+        finishOperation();
+    }
 }

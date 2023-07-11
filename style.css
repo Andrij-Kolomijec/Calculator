@@ -66,6 +66,10 @@ button {
     border: 5px solid rgb(192, 255, 236);
 }
 
+button:focus {
+    outline: none;
+}
+
 button:hover,
 #clear:hover,
 #divide:hover,
