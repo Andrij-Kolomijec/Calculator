@@ -84,9 +84,8 @@ function doOperation(e) {
     displayFirstRow.textContent = firstRow + operator;
     displaySecondRow.textContent = '';
     finished = false;
-    if (operator === "÷" && secondRow === "0") {
-        displaySecondRow.textContent = "Division by zero, MORON!";
-    }
+    if (operator === "÷" && secondRow === "0") displaySecondRow.textContent = "Division by zero, MORON!";
+    if (displayFirstRow.textContent.includes(null)) displaySecondRow.textContent = "Nothing there!";
 }
 
 function finishOperation() {
@@ -166,9 +165,8 @@ function handleKeyboardInput(e) {
         displayFirstRow.textContent = firstRow + operator;
         displaySecondRow.textContent = '';
         finished = false;
-        if (operator === "÷" && secondRow === "0") {
-            displaySecondRow.textContent = "Division by zero, MORON!";
-        }
+        if (operator === "÷" && secondRow === "0") displaySecondRow.textContent = "Division by zero, MORON!";
+        if (displayFirstRow.textContent.includes(null)) displaySecondRow.textContent = "Nothing there!";
     } else if (key === '=' || key === 'Enter') {
         e.preventDefault();
         finishOperation();
