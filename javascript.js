@@ -145,7 +145,10 @@ function handleKeyboardInput(e) {
         }
     } else if (key === '*' || key === '/' || key === '+' || key === '-') {
         if (key === '*') key = '×';
-        if (key === '/') key = '÷';
+        if (key === '/') {
+            key = '÷';
+            e.preventDefault();
+        }
         if (activeOperator === true) {
             operator = key;
             secondRow = firstRow;
@@ -168,3 +171,7 @@ function handleKeyboardInput(e) {
         }
     } else if (key === '=' || key === 'Enter') finishOperation()
 }
+
+
+//cancel focus after clicking
+//preventDefault of /
