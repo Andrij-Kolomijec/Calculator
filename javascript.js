@@ -32,7 +32,7 @@ function operate(a, operator, b) {
 
 const displayFirstRow = document.querySelector('#display-first-row');
 const displaySecondRow = document.querySelector('#display-second-row');
-const buttons = document.querySelectorAll('.numeric');
+const buttons = document.querySelectorAll('.number');
 let activeOperator = false;
 let finished = false;
 
@@ -111,5 +111,3 @@ deleteButton.addEventListener('click', () => {
     if (finished === false) displaySecondRow.textContent = displaySecondRow.textContent.slice(0, -1);
     secondRow = displaySecondRow.textContent;
 })
-
-// TO DO: css, clean the code

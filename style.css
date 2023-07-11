@@ -14,7 +14,7 @@ body {
     justify-content: center;
     width: 480px;
     height: 600px;
-    border: 25px solid rgb(186, 125, 21);
+    border: 25px solid rgb(189, 88, 54);
     border-radius: 20px;
 }
 
@@ -22,23 +22,28 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    border-bottom: 20px solid rgb(186, 125, 21);
+    border-bottom: 20px solid rgb(189, 88, 54);
+    padding: 15px;
+    gap: 15px;
 }
 
 #display-first-row {
     display: flex;
-    flex-grow: 1;
+    flex: 1;
     align-self: flex-end;
     font-size: 30px;
-    padding-top: 10px;
-    padding-right: 30px;
+    align-items: center;
+    /* word-wrap: break-word; = overfloaw-wrap: break-word; does not break the word in the middle */
+    word-break: break-all; /* wraps the number (word) on the next line when it is too long for the display */
 }
 
 #display-second-row {
-    flex-grow: 1;
+    display: flex;
+    flex: 1;
     align-self: flex-end;
     font-size: 40px;
-    padding-right: 30px;
+    /* overflow-wrap: break-word; */
+    word-break: break-all;
 }
 
 #clear-delete-row, /* grouping selector */
@@ -56,43 +61,74 @@ button {
     font-size: 25px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(54, 186, 21);
+    background-color: rgb(33, 116, 12);
     border-radius: 50px;
     border: 5px solid rgb(192, 255, 236);
 }
 
-.button {
-    display: flex;
-    flex: 1;
-}
-
-button:hover {
-    background-color: #03e693;
-    color: rgb(152, 152, 2);
+button:hover,
+#clear:hover,
+#divide:hover,
+#multiply:hover,
+#delete:hover,
+#subtract:hover,
+#add:hover,
+#last-row #equal-button:hover {
+    background-color: #06794f;
+    color: rgb(25, 200, 174);
     transition: 0.5s;
 }
 
-.button.clear-delete,
-.button.last-button { /* chaining selector */
+.button.clear-delete, /* chaining selector */
+.last-button { 
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1.5;
 }
 
 .right-button {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 #last-row #equal-button { /* descendant combinator */
     display: flex;
     flex: 2;
+    background-color: rgb(36, 46, 0);
+    color: rgb(164, 164, 164);
+    font-size: 70px;
+    font-weight: bold;
 }
 
 .number {
+    display: flex;
+    flex: 1;
     font-family: 'Courier New', Courier, monospace;
     font-size: 35px;
     font-weight: bold;
+}
+
+#clear {
+    background-color: rgb(189, 236, 0);
+}
+
+#delete {
+    background-color: rgb(153, 192, 0);
+}
+
+#multiply {
+    background-color: rgb(122, 153, 0);
+}
+
+#divide {
+    background-color: rgb(96, 120, 0);
+}
+
+#subtract {
+    background-color: rgb(76, 95, 0);
+}
+
+#add {
+    background-color: rgb(57, 72, 0);
 }
