@@ -117,16 +117,54 @@ function deleteLastInput() {
 }
 
 function handleKeyboardInput(e) {
-    const key = e.key;
+    let key = e.key;
     switch (key) {
-        case '1':
-          // Handle pressing the number 1 key
-          // Perform the corresponding action
-          break;
         case 'Escape':
-          // Handle pressing the Escape key
-          // Perform the corresponding action
+          clear();
           break;
-        // Add more cases for other keys
+        case 'Backspace':
+          deleteLastInput();
+          break;
       }
+    if ((key >= 0 && key<= 9) || (key === '.')) {
+        if (finished === true) clear();
+        if (key === '.') {
+            if (displaySecondRow.textContent.includes('.')) {
+                displaySecondRow.textContent = displaySecondRow.textContent;
+            } else {
+                displaySecondRow.textContent = displaySecondRow.textContent + key;
+                secondRow = displaySecondRow.textContent;
+                activeOperator = false;
+                finished = false; 
+            }
+        } else {
+            displaySecondRow.textContent = displaySecondRow.textContent + key;
+            secondRow = displaySecondRow.textContent;
+            activeOperator = false;
+            finished = false;  
+        }
+    } else if (key === '*' || key === '/' || key === '+' || key === '-') {
+        if (key === '*') key = '×';
+        if (key === '/') key = '÷';
+        if (activeOperator === true) {
+            operator = key;
+            secondRow = firstRow;
+        }
+        if (firstRow !== null && activeOperator === false) {
+            firstRow = operate(firstRow, operator, secondRow);
+            displayFirstRow.textContent = firstRow;
+            operator = key;
+            activeOperator = true;
+        } else {
+            firstRow = secondRow;
+            operator = key;
+            activeOperator = true;
+        }
+        displayFirstRow.textContent = firstRow + operator;
+        displaySecondRow.textContent = '';
+        finished = false;
+        if (operator === "÷" && secondRow === "0") {
+            displaySecondRow.textContent = "Division by zero, MORON!";
+        }
+    } else if (key === '=' || key === 'Enter') finishOperation()
 }
