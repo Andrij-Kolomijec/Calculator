@@ -147,7 +147,7 @@ function handleKeyboardInput(e) {
         if (key === '*') key = '×';
         if (key === '/') {
             key = '÷';
-            e.preventDefault();
+            e.preventDefault(); // prevents default behavior (toggle find) in firefox
         }
         if (activeOperator === true) {
             operator = key;
