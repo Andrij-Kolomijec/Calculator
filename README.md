@@ -1,4 +1,6 @@
 # Calculator
-The Odin Project
+[The Odin Project](https://www.theodinproject.com/)
 
-visit here: https://andrij-kolomijec.github.io/Calculator/
+[:arrow_forward: visit here](https://andrij-kolomijec.github.io/Calculator/)
+
+topics: javascript
